@@ -4,14 +4,15 @@
   "description": "An Oracle JavaScript Extension Toolkit(JET) web app",
   "dependencies": {
     "@oracle/oraclejet": "~20.0.0",
-    "@oracle/oraclejet-core-pack": "~20.0.0"
+    "@oracle/oraclejet-core-pack": "~20.0.0",
+    "aws-amplify": "^6.16.4"
   },
   "devDependencies": {
+    "@oracle/ojet-cli": "~20.0.1",
     "extract-zip": "^1.7.0",
     "fs-extra": "^8.1.0",
     "glob": "10.4.5",
-    "underscore": "^1.10.2",
-    "@oracle/ojet-cli": "~20.0.1"
+    "underscore": "^1.10.2"
   },
   "engines": {
     "node": ">=16.0.0"

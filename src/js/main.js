@@ -47,9 +47,9 @@
   'preact/hooks': 'libs/preact/hooks/dist/hooks.umd',
   'preact/compat': 'libs/preact/compat/dist/compat.umd',
   'preact/jsx-runtime': 'libs/preact/jsx-runtime/dist/jsxRuntime.umd',
-  'touchr': 'libs/touchr/touchr'
-  ,
-        'chai': 'libs/chai/chai-4.5.0'
+  'touchr': 'libs/touchr/touchr',
+  'chai': 'libs/chai/chai-4.5.0',
+  'aws-amplify': 'node_modules/aws-amplify/dist/aws-amplify'
       }
       // endinjector
     }
@@ -59,4 +59,19 @@
 /**
  * Load the application's entry point file
  */
+require(['aws-amplify', './root'], function (AmplifyMod, root) {
+    // Nota: Dependiendo de la versión, puede ser AmplifyMod.Amplify o solo AmplifyMod
+    const Amplify = AmplifyMod.Amplify || AmplifyMod;
+
+    Amplify.configure({
+        Auth: {
+            Cognito: {
+                userPoolId: 'USER_POOL_ID', 
+                userPoolClientId: 'APP_CLIENT_ID'
+            }
+        }
+    });
+
+    console.log("AWS Amplify configurado correctamente");
+});
 require(['./root']);
