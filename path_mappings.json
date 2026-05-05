@@ -380,8 +380,10 @@
          "path": "libs/chai/chai.js",
          "cdnPath": "chai/chai-4.5.0.min"
       }
-   },
-  "aws-amplify": {
+ 
+ 
+    },
+    "aws-amplify": {
     "cwd": "node_modules/aws-amplify/dist",
     "debug": {
       "src": "aws-amplify.js",
@@ -391,7 +393,7 @@
       "src": "aws-amplify.js",
       "path": "libs/aws-amplify/aws-amplify.js"
     }
-  }
+    }
 
   }
 }
