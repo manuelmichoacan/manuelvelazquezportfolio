@@ -66,6 +66,7 @@
  */
 require(['aws-amplify', './root'], function (AmplifyMod, root) {
     // Nota: Dependiendo de la versión, puede ser AmplifyMod.Amplify o solo AmplifyMod
+    console.log(AmplifyMod, root);
     const Amplify = AmplifyMod?.default || AmplifyMod?.Amplify || AmplifyMod;
     if (!Amplify) {
         console.error("La librería Amplify no se cargó correctamente. Revisa la ruta en path_mappings.json");
