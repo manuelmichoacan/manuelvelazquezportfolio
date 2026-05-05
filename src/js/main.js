@@ -66,8 +66,8 @@ require(['aws-amplify', './root'], function (AmplifyMod, root) {
     Amplify.configure({
         Auth: {
             Cognito: {
-                userPoolId: USER_POOL_ID, 
-                userPoolClientId: APP_CLIENT_ID
+                userPoolId: 'USER_POOL_ID', 
+                userPoolClientId: 'APP_CLIENT_ID'
             }
         }
     });
