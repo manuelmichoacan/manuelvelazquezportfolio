@@ -49,8 +49,13 @@
   'preact/jsx-runtime': 'libs/preact/jsx-runtime/dist/jsxRuntime.umd',
   'touchr': 'libs/touchr/touchr',
   'chai': 'libs/chai/chai-4.5.0',
-  'aws-amplify': 'js/libs/aws-amplify/aws-amplify'
-      }
+  'aws-amplify': 'libs/aws-amplify/aws-amplify'
+      },
+  shim: {
+            'aws-amplify': {
+            exports: 'Amplify'
+            }
+        }
       // endinjector
     }
   );
@@ -61,17 +66,19 @@
  */
 require(['aws-amplify', './root'], function (AmplifyMod, root) {
     // Nota: Dependiendo de la versión, puede ser AmplifyMod.Amplify o solo AmplifyMod
-    const Amplify = AmplifyMod.Amplify || AmplifyMod;
-
-    Amplify.configure({
-        Auth: {
-            Cognito: {
-                userPoolId: 'USER_POOL_ID', 
-                userPoolClientId: 'APP_CLIENT_ID'
+    const Amplify = AmplifyMod.default || AmplifyMod.Amplify || AmplifyMod;
+    try {
+        Amplify.configure({
+            Auth: {
+                Cognito: {
+                    userPoolId: 'USER_POOL_ID', 
+                    userPoolClientId: 'APP_CLIENT_ID'
+                }
             }
-        }
-    });
+        });
 
-    console.log("AWS Amplify configurado correctamente");
-});
-require(['./root']);
+        console.log("AWS Amplify configurado correctamente");
+       } catch (e) {
+        console.error("Error al configurar Amplify:", e);
+       }
+    });
