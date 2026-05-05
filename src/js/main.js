@@ -49,7 +49,7 @@
   'preact/jsx-runtime': 'libs/preact/jsx-runtime/dist/jsxRuntime.umd',
   'touchr': 'libs/touchr/touchr',
   'chai': 'libs/chai/chai-4.5.0',
-  'aws-amplify': 'node_modules/aws-amplify/dist/aws-amplify'
+  'aws-amplify': 'libs/aws-amplify/aws-amplify'
       }
       // endinjector
     }
