@@ -383,16 +383,17 @@
  
  
     },
+
     "aws-amplify": {
-    "cwd": "node_modules/aws-amplify/dist",
-    "debug": {
-      "src": "aws-amplify.js",
-      "path": "libs/aws-amplify/aws-amplify.js"
-    },
-    "release": {
-      "src": "aws-amplify.js",
-      "path": "libs/aws-amplify/aws-amplify.js"
-    }
+      "cwd": "node_modules/aws-amplify/dist",
+      "debug": {
+        "src": "aws-amplify.js",
+        "path": "libs/aws-amplify/aws-amplify.js"
+      },
+      "release": {
+        "src": "aws-amplify.js",
+        "path": "libs/aws-amplify/aws-amplify.js"
+      }
     }
 
   }
