@@ -53,7 +53,10 @@
       },
   shim: {
             'aws-amplify': {
-            exports: 'Amplify'
+            exports: 'Amplify',
+            init: function() {
+                    return window.Amplify || window.aws_amplify;
+                }
             }
         }
       // endinjector
@@ -68,14 +71,15 @@ require(['aws-amplify', './root'], function (AmplifyMod) {
     // Nota: Dependiendo de la versión, puede ser AmplifyMod.Amplify o solo AmplifyMod
     console.log("Estado de AmplifyMod:", AmplifyMod);
     console.log("Estado de window.Amplify:", window.Amplify);
-    const Amplify = AmplifyMod || window.Amplify;
+    console.log("Estado de window.Amplify:", window.aws_amplify);
+    const Amplify = AmplifyMod || window.Amplify || window.aws_amplify;
     if (!Amplify || (typeof Amplify.configure !== 'function' && !Amplify.default)) {
-        console.error("Error: La instancia de Amplify no es válida.", AmplifyMod);
+        console.error("Crítico: Amplify no se cargó en el DOM.", AmplifyMod);
         return;
     };
-    const actualAmplify = Amplify.default || Amplify;
+    const api = Amplify.Amplify || Amplify;
     try {
-        actualAmplify.configure({
+        api.configure({
             Auth: {
                 Cognito: {
                     userPoolId: "USER_POOL_ID", 
