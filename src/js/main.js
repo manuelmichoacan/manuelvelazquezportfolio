@@ -27,8 +27,10 @@
       ** All paths are dynamicaly generated from the path_mappings.json file.
       ** Add any new library dependencies in path_mappings json file
       */
-      // injector:mainReleasePaths
+      
       {
+        'aws-amplify': 'libs/aws-amplify/aws-amplify',
+        // injector:mainReleasePaths
         'ojs': 'libs/oj/20.0.0/debug',
         'ojL10n': 'libs/oj/20.0.0/ojL10n',
         'ojtranslations': 'libs/oj/20.0.0/resources',
@@ -48,18 +50,17 @@
   'preact/compat': 'libs/preact/compat/dist/compat.umd',
   'preact/jsx-runtime': 'libs/preact/jsx-runtime/dist/jsxRuntime.umd',
   'touchr': 'libs/touchr/touchr',
-  'chai': 'libs/chai/chai-4.5.0',
-  'aws-amplify': 'libs/aws-amplify/aws-amplify'
-      },
+  'chai': 'libs/chai/chai-4.5.0'
+  // endinjector
+    }
   shim: {
         'aws-amplify': {
-            exports: 'Amplify',
+            exports: 'Amplify'/*,
             init: function() {
                     return window.Amplify;
-                }
+                }*/
             }
         }
-      // endinjector
     }
     );
     console.log("Configurando shim para aws-amplify_2",window);
