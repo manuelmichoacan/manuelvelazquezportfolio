@@ -52,10 +52,10 @@
   'aws-amplify': 'libs/aws-amplify/aws-amplify'
       },
   shim: {
-            'aws-amplify': {
+        'aws-amplify': {
             exports: 'Amplify',
             init: function() {
-                    return window.Amplify || window.aws_amplify;
+                    return window.Amplify;
                 }
             }
         }
