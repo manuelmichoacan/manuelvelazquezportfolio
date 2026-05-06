@@ -66,14 +66,16 @@
  */
 require(['aws-amplify', './root'], function (AmplifyMod) {
     // Nota: Dependiendo de la versión, puede ser AmplifyMod.Amplify o solo AmplifyMod
-    console.log(AmplifyMod);
+    console.log("Estado de AmplifyMod:", AmplifyMod);
+    console.log("Estado de window.Amplify:", window.Amplify);
     const Amplify = AmplifyMod || window.Amplify;
-    if (!Amplify || typeof Amplify.configure !== 'function') {
+    if (!Amplify || (typeof Amplify.configure !== 'function' && !Amplify.default)) {
         console.error("Error: La instancia de Amplify no es válida.", AmplifyMod);
         return;
     };
+    const actualAmplify = Amplify.default || Amplify;
     try {
-        Amplify.configure({
+        actualAmplify.configure({
             Auth: {
                 Cognito: {
                     userPoolId: "USER_POOL_ID", 
