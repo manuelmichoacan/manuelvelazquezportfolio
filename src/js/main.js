@@ -67,7 +67,7 @@
 require(['aws-amplify', './root'], function (AmplifyMod) {
     // Nota: Dependiendo de la versión, puede ser AmplifyMod.Amplify o solo AmplifyMod
     console.log(AmplifyMod);
-    const Amplify = AmplifyMod?.default || AmplifyMod?.Amplify || AmplifyMod;
+    const Amplify = AmplifyMod || window.Amplify;
     if (!Amplify || typeof Amplify.configure !== 'function') {
         console.error("Error: La instancia de Amplify no es válida.", AmplifyMod);
         return;
