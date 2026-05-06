@@ -22,7 +22,7 @@
     {
       baseUrl: 'js',
 
-      paths:
+        paths:
       /* DO NOT MODIFY
       ** All paths are dynamicaly generated from the path_mappings.json file.
       ** Add any new library dependencies in path_mappings json file
@@ -52,7 +52,7 @@
         'touchr': 'libs/touchr/touchr',
         'chai': 'libs/chai/chai-4.5.0'
         // endinjector
-     },
+            },
         shim: {
             'aws-amplify': {
                 exports: 'Amplify'
@@ -60,7 +60,7 @@
             }
     });
     console.log("Configurando shim para aws-amplify_2",window);
-});
+}());
 
 /**
  * Load the application's entry point file
