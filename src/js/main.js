@@ -17,7 +17,7 @@
     // will implicitly add a busy state, until the application calls applicationBootstrapComplete
     // on the busy state context.
     window["oj_whenReady"] = true;
-
+    console.log("Configurando shim para aws-amplify",window);
     requirejs.config(
     {
       baseUrl: 'js',
@@ -61,7 +61,8 @@
         }
       // endinjector
     }
-  );
+    );
+    console.log("Configurando shim para aws-amplify_2",window);
 }());
 
 /**
