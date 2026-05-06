@@ -52,7 +52,7 @@
   'touchr': 'libs/touchr/touchr',
   'chai': 'libs/chai/chai-4.5.0'
   // endinjector
-    }
+    },
   shim: {
         'aws-amplify': {
             exports: 'Amplify'/*,
