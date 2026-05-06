@@ -64,12 +64,12 @@
 /**
  * Load the application's entry point file
  */
-require(['aws-amplify', './root'], function (AmplifyMod, root) {
+require(['aws-amplify', './root'], function (AmplifyMod) {
     // Nota: Dependiendo de la versión, puede ser AmplifyMod.Amplify o solo AmplifyMod
-    console.log(AmplifyMod, root);
+    console.log(AmplifyMod);
     const Amplify = AmplifyMod?.default || AmplifyMod?.Amplify || AmplifyMod;
-    if (!Amplify) {
-        console.error("La librería Amplify no se cargó correctamente. Revisa la ruta en path_mappings.json");
+    if (!Amplify || typeof Amplify.configure !== 'function') {
+        console.error("Error: La instancia de Amplify no es válida.", AmplifyMod);
         return;
     };
     try {
@@ -77,7 +77,8 @@ require(['aws-amplify', './root'], function (AmplifyMod, root) {
             Auth: {
                 Cognito: {
                     userPoolId: "USER_POOL_ID", 
-                    userPoolClientId: "APP_CLIENT_ID"
+                    userPoolClientId: "APP_CLIENT_ID",
+                    region: "REGION_NAME"
                 }
             }
         });
