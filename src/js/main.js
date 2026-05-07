@@ -20,42 +20,42 @@
     console.log("Configurando shim para aws-amplify",window);
     requirejs.config(
     {
-      baseUrl: 'js',
+        baseUrl: 'js',
 
         paths:
-      /* DO NOT MODIFY
-      ** All paths are dynamicaly generated from the path_mappings.json file.
-      ** Add any new library dependencies in path_mappings json file
-      */
-      // injector:mainReleasePaths
-      {
-        'ojs': 'libs/oj/20.0.0/debug',
-        'ojL10n': 'libs/oj/20.0.0/ojL10n',
-        'ojtranslations': 'libs/oj/20.0.0/resources',
-        'knockout': 'libs/knockout/knockout-3.5.1.debug',
-        'jquery': 'libs/jquery/jquery-3.7.1',
-        'jqueryui-amd': 'libs/jquery/jqueryui-amd-1.14.1',
-        'text': 'libs/require/text',
-        'hammerjs': 'libs/hammer/hammer-2.0.8',
-        'signals': 'libs/js-signals/signals',
-        'ojdnd': 'libs/dnd-polyfill/dnd-polyfill-1.0.2',
-        'css': 'libs/require-css/css.min',
-        'css-builder': 'libs/require-css/css-builder',
-        'normalize': 'libs/require-css/normalize',
-        '@oracle/oraclejet-preact': 'libs/oraclejet-preact/amd',
-        'preact': 'libs/preact/dist/preact.umd',
-        'preact/hooks': 'libs/preact/hooks/dist/hooks.umd',
-        'preact/compat': 'libs/preact/compat/dist/compat.umd',
-        'preact/jsx-runtime': 'libs/preact/jsx-runtime/dist/jsxRuntime.umd',
-        'touchr': 'libs/touchr/touchr',
-        'chai': 'libs/chai/chai-4.5.0'
+        /* DO NOT MODIFY
+        ** All paths are dynamicaly generated from the path_mappings.json file.
+        ** Add any new library dependencies in path_mappings json file
+        */
+        // injector:mainReleasePaths
+        {
+            'ojs': 'libs/oj/20.0.0/debug',
+            'ojL10n': 'libs/oj/20.0.0/ojL10n',
+            'ojtranslations': 'libs/oj/20.0.0/resources',
+            'knockout': 'libs/knockout/knockout-3.5.1.debug',
+            'jquery': 'libs/jquery/jquery-3.7.1',
+            'jqueryui-amd': 'libs/jquery/jqueryui-amd-1.14.1',
+            'text': 'libs/require/text',
+            'hammerjs': 'libs/hammer/hammer-2.0.8',
+            'signals': 'libs/js-signals/signals',
+            'ojdnd': 'libs/dnd-polyfill/dnd-polyfill-1.0.2',
+            'css': 'libs/require-css/css.min',
+            'css-builder': 'libs/require-css/css-builder',
+            'normalize': 'libs/require-css/normalize',
+            '@oracle/oraclejet-preact': 'libs/oraclejet-preact/amd',
+            'preact': 'libs/preact/dist/preact.umd',
+            'preact/hooks': 'libs/preact/hooks/dist/hooks.umd',
+            'preact/compat': 'libs/preact/compat/dist/compat.umd',
+            'preact/jsx-runtime': 'libs/preact/jsx-runtime/dist/jsxRuntime.umd',
+            'touchr': 'libs/touchr/touchr',
+            'chai': 'libs/chai/chai-4.5.0'
         },
         // endinjector
         shim: {
             'aws-amplify': {
                 exports: 'Amplify'
-                }
             }
+        }
     });
     console.log("Configurando shim para aws-amplify_2",window);
 }());
