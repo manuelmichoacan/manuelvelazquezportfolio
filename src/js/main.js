@@ -17,7 +17,6 @@
     // will implicitly add a busy state, until the application calls applicationBootstrapComplete
     // on the busy state context.
     window["oj_whenReady"] = true;
-    console.log("Configurando shim para aws-amplify",window);
     requirejs.config(
     {
         baseUrl: 'js',
@@ -57,8 +56,6 @@
             }
         }
     });
-    console.log("Configurando shim para aws-amplify_2",window);
-    console.log(requirejs.config());
 }());
 
 /**
@@ -66,6 +63,7 @@
  */
 require(['aws-amplify', './root'], function (AmplifyMod) {
     // Nota: Dependiendo de la versión, puede ser AmplifyMod.Amplify o solo AmplifyMod
+    console.log("Ventana:", window);
     console.log("Estado de AmplifyMod:", AmplifyMod);
     console.log("Estado de window.Amplify:", window.Amplify);
     console.log("Estado de window.Amplify:", window.aws_amplify);
