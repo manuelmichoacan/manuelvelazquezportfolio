@@ -57,7 +57,7 @@
             }
         }
     });
-    console.log("Configurando shim para aws-amplify_2",window);
+    console.log("Configurando shim para aws-amplify_2",requirejs);
 }());
 
 /**
