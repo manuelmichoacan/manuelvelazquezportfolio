@@ -49,9 +49,9 @@
             'preact/jsx-runtime': 'libs/preact/jsx-runtime/dist/jsxRuntime.umd',
             'touchr': 'libs/touchr/touchr',
             'chai': 'libs/chai/chai-4.5.0'
-        },
+        }
         // endinjector
-        shim: {
+    ,   shim: {
             'aws-amplify': {
                 exports: 'Amplify'
             }
