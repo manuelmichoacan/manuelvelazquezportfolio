@@ -63,13 +63,9 @@
  */
 require(['aws-amplify', './root'], function (AmplifyMod) {
     // Nota: Dependiendo de la versión, puede ser AmplifyMod.Amplify o solo AmplifyMod
-    console.log("Ventana:", window);
-    console.log("Estado de AmplifyMod:", AmplifyMod);
-    console.log("Estado de window.Amplify:", window.Amplify);
-    console.log("Estado de window.Amplify:", window.aws_amplify);
     const Amplify = AmplifyMod || window.Amplify || window.aws_amplify;
-    if (!Amplify || (typeof Amplify.configure !== 'function' && !Amplify.default)) {
-        console.error("Crítico: Amplify no se cargó en el DOM.", AmplifyMod);
+    if (!Amplify) {
+        console.error("Crítico: Amplify no se cargó en el DOM.");
         return;
     };
     const api = Amplify.Amplify || Amplify;
