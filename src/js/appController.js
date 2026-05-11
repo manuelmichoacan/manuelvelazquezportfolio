@@ -9,19 +9,21 @@
  * Your application specific code will go here
  */
 define(['knockout', 'ojs/ojcontext', 'ojs/ojmodule-element-utils', 'ojs/ojknockouttemplateutils', 'ojs/ojcorerouter', 'ojs/ojmodulerouter-adapter', 'ojs/ojknockoutrouteradapter', 'ojs/ojurlparamadapter', 'ojs/ojresponsiveutils', 'ojs/ojresponsiveknockoututils', 'ojs/ojarraydataprovider',
-        'ojs/ojdrawerpopup', 'ojs/ojmodule-element', 'ojs/ojknockout'],
-  function(ko, Context, moduleUtils, KnockoutTemplateUtils, CoreRouter, ModuleRouterAdapter, KnockoutRouterAdapter, UrlParamAdapter, ResponsiveUtils, ResponsiveKnockoutUtils, ArrayDataProvider) {
+        'services/ThemeService', 'ojs/ojdrawerpopup', 'ojs/ojmodule-element', 'ojs/ojknockout'],
+  function(ko, Context, moduleUtils, KnockoutTemplateUtils, CoreRouter, ModuleRouterAdapter, KnockoutRouterAdapter, UrlParamAdapter, ResponsiveUtils, ResponsiveKnockoutUtils, ArrayDataProvider, ThemeService) {
 
      function ControllerViewModel() {
+      var self = this;
 
-      this.KnockoutTemplateUtils = KnockoutTemplateUtils;
+      self.KnockoutTemplateUtils = KnockoutTemplateUtils;
+      self.theme = ThemeService;
 
       // Handle announcements sent when pages change, for Accessibility.
-      this.manner = ko.observable('polite');
-      this.message = ko.observable();
+      self.manner = ko.observable('polite');
+      self.message = ko.observable();
       announcementHandler = (event) => {
-          this.message(event.detail.message);
-          this.manner(event.detail.manner);
+          self.message(event.detail.message);
+          self.manner(event.detail.manner);
       };
 
       document.getElementById('globalBody').addEventListener('announce', announcementHandler, false);
@@ -29,9 +31,9 @@ define(['knockout', 'ojs/ojcontext', 'ojs/ojmodule-element-utils', 'ojs/ojknocko
 
       // Media queries for responsive layouts
       const smQuery = ResponsiveUtils.getFrameworkQuery(ResponsiveUtils.FRAMEWORK_QUERY_KEY.SM_ONLY);
-      this.smScreen = ResponsiveKnockoutUtils.createMediaQueryObservable(smQuery);
+      self.smScreen = ResponsiveKnockoutUtils.createMediaQueryObservable(smQuery);
       const mdQuery = ResponsiveUtils.getFrameworkQuery(ResponsiveUtils.FRAMEWORK_QUERY_KEY.MD_UP);
-      this.mdScreen = ResponsiveKnockoutUtils.createMediaQueryObservable(mdQuery);
+      self.mdScreen = ResponsiveKnockoutUtils.createMediaQueryObservable(mdQuery);
 
       let navData = [
         { path: '', redirect: 'dashboard' },
@@ -47,33 +49,61 @@ define(['knockout', 'ojs/ojcontext', 'ojs/ojmodule-element-utils', 'ojs/ojknocko
       });
       router.sync();
 
-      this.moduleAdapter = new ModuleRouterAdapter(router);
-
-      this.selection = new KnockoutRouterAdapter(router);
+      self.moduleAdapter = new ModuleRouterAdapter(router);
+      self.selection = new KnockoutRouterAdapter(router);
 
       // Setup the navDataProvider with the routes, excluding the first redirected
       // route.
-      this.navDataProvider = new ArrayDataProvider(navData.slice(1), {keyAttributes: "path"});
+      self.navDataProvider = new ArrayDataProvider(navData.slice(1), {keyAttributes: "path"});
 
       // Drawer
-      this.sideDrawerOn = ko.observable(false);
+      self.sideDrawerOn = ko.observable(false);
 
       // Close drawer on medium and larger screens
-      this.mdScreen.subscribe(() => { this.sideDrawerOn(false) });
+      self.mdScreen.subscribe(() => { self.sideDrawerOn(false) });
 
       // Called by navigation drawer toggle button and after selection of nav drawer item
-      this.toggleDrawer = () => {
-        this.sideDrawerOn(!this.sideDrawerOn());
+      self.toggleDrawer = () => {
+        self.sideDrawerOn(!self.sideDrawerOn());
       }
 
       // Header
       // Application Name used in Branding Area
-      this.appName = ko.observable("App Name");
+      self.appName = ko.observable("App Name");
       // User Info used in Global Navigation area
-      this.userLogin = ko.observable("john.hancock@oracle.com");
+      self.userLogin = ko.observable("john.hancock@oracle.com");
+
+      self.loadBusinessConfig = async function() {
+        // Detectamos Amplify
+        const api = windows.aws_amplify || window.Amplify;
+        
+        try {
+          const session = await api.Auth.currentSession();
+          const token = session.getIdToken().getJwtToken();
+
+          // Llamada al API Gateway (Lambda -> DynamoDB)
+          const response = await fetch('https://ovd1d7pu1h.execute-api.us-east-1.amazonaws.com', {
+              headers: { 'Authorization': token }
+          });
+          console.log(response);
+          
+          //const config = await response.json();
+
+          // Aplicamos el tema dinámico
+          //ThemeService.applyTheme(config);
+          
+          // Actualizamos el nombre de la app con el del negocio
+          //if(config.name) self.appName(config.name);
+        } catch (e) {
+          console.log("No hay sesión activa o error de red, se mantiene tema por defecto.");
+        }
+      };
+
+      // Ejecutar la carga al inicializar
+      self.loadBusinessConfig();
 
       // Footer
-      this.footerLinks = [
+      self.footerLinks = [
         {name: 'About Oracle', linkId: 'aboutOracle', linkTarget:'http://www.oracle.com/us/corporate/index.html#menu-about'},
         { name: "Contact Us", id: "contactUs", linkTarget: "http://www.oracle.com/us/corporate/contact/index.html" },
         { name: "Legal Notices", id: "legalNotices", linkTarget: "http://www.oracle.com/us/legal/index.html" },
