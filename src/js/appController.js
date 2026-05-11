@@ -75,14 +75,14 @@ define(['knockout', 'ojs/ojcontext', 'ojs/ojmodule-element-utils', 'ojs/ojknocko
 
       self.loadBusinessConfig = async function() {
         // Detectamos Amplify
-        console.log(window);
         
-        const api = windows.aws_amplify || window.Amplify;
+        const api = window.aws_amplify || window.Amplify;
         
         try {
           const session = await api.Auth.currentSession();
           const token = session.getIdToken().getJwtToken();
-
+          console.log(session);
+          console.log(token);
           // Llamada al API Gateway (Lambda -> DynamoDB)
           const response = await fetch('https://ovd1d7pu1h.execute-api.us-east-1.amazonaws.com', {
               headers: { 'Authorization': token }
