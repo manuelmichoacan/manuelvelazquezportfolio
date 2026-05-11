@@ -75,6 +75,8 @@ define(['knockout', 'ojs/ojcontext', 'ojs/ojmodule-element-utils', 'ojs/ojknocko
 
       self.loadBusinessConfig = async function() {
         // Detectamos Amplify
+        console.log(windows);
+        
         const api = windows.aws_amplify || window.Amplify;
         
         try {
