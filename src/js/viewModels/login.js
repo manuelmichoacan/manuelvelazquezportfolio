@@ -1,0 +1,35 @@
+define(['knockout', 'ojs/ojrouter', 'ojs/ojknockout'],
+ function(ko, Router) {
+    function LoginViewModel() {
+      var self = this;
+
+      // Observables para el formulario
+      self.userName = ko.observable('');
+      self.password = ko.observable('');
+      self.loading = ko.observable(false);
+      self.errorMessage = ko.observable('');
+
+      self.handleLogin = async function() {
+        self.errorMessage('');
+        self.loading(true);
+
+        // Recuperamos la instancia de Amplify desde la variable global
+        const api = window.aws_amplify || window.Amplify;
+
+        try {
+          // Llamada a Cognito a través de Amplify
+          const user = await api.Auth.signIn(self.userName(), self.password());
+          console.log("Acceso concedido para:", user.username);
+
+          // Redirigir al dashboard tras éxito
+          Router.rootInstance.go({path: 'dashboard'});
+        } catch (error) {
+          console.error("Error de login:", error);
+          self.errorMessage("Usuario o contraseña incorrectos");
+        } finally {
+          self.loading(false);
+        }
+      };
+    }
+    return LoginViewModel;
+ });
