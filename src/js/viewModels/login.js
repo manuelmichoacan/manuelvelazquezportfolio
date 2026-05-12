@@ -1,4 +1,4 @@
-define(['knockout', 'ojs/ojrouter', 'ojs/ojknockout'],
+define(['knockout', 'ojs/ojrouter', 'ojs/ojformlayout', 'ojs/ojinputtext', 'ojs/ojbutton', 'ojs/ojknockout'],
  function(ko, Router) {
     function LoginViewModel() {
       var self = this;
