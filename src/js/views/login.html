@@ -7,19 +7,19 @@
         <oj-input-text style="display: flex; justify-content: center" id="username" label-hint="Usuario" value="{{userName}}" required></oj-input-text>
         <oj-input-password id="password" label-hint="Contraseña" value="{{password}}" required></oj-input-password>
         
-        <!--div class="oj-sm-margin-4x-top">
+        <div class="oj-sm-margin-4x-top">
           <oj-button id="loginButton" chroming="solid" on-oj-action="[[handleLogin]]" 
                      disabled="[[loading]]">
             <span>Iniciar Sesión</span>
           </oj-button>
-        </div-->
+        </div>
       </oj-form-layout>
 
-      <!--oj-bind-if test="[[errorMessage]]">
+      <oj-bind-if test="[[errorMessage]]">
         <p class="oj-text-color-danger oj-sm-margin-2x-top">
           <oj-bind-text value="[[errorMessage]]"></oj-bind-text>
         </p>
-      </!oj-bind-if-->
+      </oj-bind-if>
     </div>
   </div>
 </div>
