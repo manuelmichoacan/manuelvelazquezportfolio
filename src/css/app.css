@@ -38,6 +38,18 @@ html[dir="rtl"] .demo-oracle-icon {
   display:inline
 }
 
+html:not([dir="rtl"]) .abarronext_icon {
+  padding-right:4px
+}
+
+html[dir="rtl"] .abarronext_icon {
+  padding-left:4px
+}
+
+.abarronext_icon:before {
+  display:inline
+}
+
 .demo-appheader-avatar {
   width:24px;
   height:24px
