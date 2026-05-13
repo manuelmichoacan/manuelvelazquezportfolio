@@ -78,7 +78,6 @@ require(['aws-amplify', './root'], function (AmplifyMod) {
                     userPoolWebClientId: "APP_CLIENT_ID",
                     mandatorySignIn: true
                 }
-            }
         });
 
         console.log("AWS Amplify configurado correctamente");
