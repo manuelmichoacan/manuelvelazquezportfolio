@@ -12,15 +12,14 @@ define(['knockout', 'ojs/ojrouter', 'ojs/ojformlayout', 'ojs/ojinputtext', 'ojs/
       self.handleLogin = async function() {
         self.errorMessage('');
         self.loading(true);
-
-        console.log("Intentando iniciar sesión con:", self.userName(), self.password(),window);
         
         // Recuperamos la instancia de Amplify desde la variable global
         const api = window.aws_amplify || window.Amplify;
-
+        console.log("Intentando iniciar sesión con:", self.userName(), self.password(),api);
         try {
           // Llamada a Cognito a través de Amplify
           const user = await api.Auth.signIn(self.userName(), self.password());
+          console.log("Intentando iniciar sesión con:", self.userName(), self.password(),api);
           console.log("Acceso concedido para:", user.username);
 
           // Redirigir al dashboard tras éxito
