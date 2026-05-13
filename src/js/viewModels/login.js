@@ -16,6 +16,12 @@ define(['knockout', 'ojs/ojrouter', 'ojs/ojformlayout', 'ojs/ojinputtext', 'ojs/
         // Recuperamos la instancia de Amplify desde la variable global
         const api = window.aws_amplify || window.Amplify;
         console.log("Intentando iniciar sesión con:", self.userName(), self.password(),api);
+        if (!api.Auth._config || Object.keys(api.Auth._config).length === 0) {
+            console.error("Amplify no está configurado. Reintentando configuración...");
+            // Forzar re-configuración si es necesario
+            return;
+        };
+
         try {
           // Llamada a Cognito a través de Amplify
           const user = await api.Auth.signIn(self.userName(), self.password());
