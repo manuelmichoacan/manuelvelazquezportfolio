@@ -23,7 +23,8 @@
 .abarronext_icon {
   width:137px;
   height:18px;
-  content:url("abarronext_logo.png
+  content:url("abarronext_logo.svg");
+}
 
 html:not([dir="rtl"]) .demo-oracle-icon {
   padding-right:4px
