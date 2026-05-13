@@ -64,6 +64,7 @@
 require(['aws-amplify', './root'], function (AmplifyMod) {
     // Nota: Dependiendo de la versión, puede ser AmplifyMod.Amplify o solo AmplifyMod
     const Amplify = AmplifyMod || window.Amplify || window.aws_amplify;
+
     if (!Amplify) {
         console.error("Crítico: Amplify no se cargó en el DOM.");
         return;
@@ -72,11 +73,10 @@ require(['aws-amplify', './root'], function (AmplifyMod) {
     try {
         api.configure({
             Auth: {
-                Cognito: {
-                    userPoolId: "USER_POOL_ID", 
-                    userPoolClientId: "APP_CLIENT_ID",
                     region: "REGION_NAME",
-                    mandatorySignIn: false
+                    userPoolId: "USER_POOL_ID", 
+                    userPoolWebClientId: "APP_CLIENT_ID",
+                    mandatorySignIn: true
                 }
             }
         });
