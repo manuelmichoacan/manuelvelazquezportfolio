@@ -13,6 +13,8 @@ define(['knockout', 'ojs/ojrouter', 'ojs/ojformlayout', 'ojs/ojinputtext', 'ojs/
         self.errorMessage('');
         self.loading(true);
 
+        console.log("Intentando iniciar sesión con:", self.userName(), self.password(),window);
+        
         // Recuperamos la instancia de Amplify desde la variable global
         const api = window.aws_amplify || window.Amplify;
 
