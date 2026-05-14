@@ -4,9 +4,11 @@ define(['knockout', 'ojs/ojarraydataprovider', 'services/ThemeService', 'ojs/ojr
       var self = this;
 
       // Datos de sesión (Desde appController)
-      let appController = document.getElementById('globalBody')._viewModel || params.parentRouter; 
+      //let appController = document.getElementById('globalBody')._viewModel || params.parentRouter; 
+      const rootViewModel = ko.dataFor(document.getElementById('globalBody'));
       //self.userLogin = params.parentRouter.parent.viewModel.userLogin;
-      self.userLogin = appController.userLogin || ko.observable("Usuario");
+      //self.userLogin = appController.userLogin || ko.observable("Usuario");
+      self.userLogin = rootViewModel ? rootViewModel.userLogin : ko.observable("Usuario");
       self.theme = ThemeService;
 
       // Estado del Carrito y UI
