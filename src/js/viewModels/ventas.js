@@ -6,6 +6,8 @@ define(['knockout', 'ojs/ojarraydataprovider', 'services/ThemeService', 'ojs/ojr
       // Datos de sesión (Desde appController)
       //let appController = document.getElementById('globalBody')._viewModel || params.parentRouter; 
       const rootViewModel = ko.dataFor(document.getElementById('globalBody'));
+      console.log(rootViewModel);
+      
       //self.userLogin = params.parentRouter.parent.viewModel.userLogin;
       //self.userLogin = appController.userLogin || ko.observable("Usuario");
       self.userLogin = rootViewModel ? rootViewModel.userLogin : ko.observable("Usuario");
@@ -106,7 +108,15 @@ define(['knockout', 'ojs/ojarraydataprovider', 'services/ThemeService', 'ojs/ojr
       self.connected = async () => {
         const api = window.aws_amplify || window.Amplify;
         try { await api.Auth.currentAuthenticatedUser(); }
-        catch (e) { Router.rootInstance.go( 'login' ); }
+        catch (e) { 
+          const rootViewModel = ko.dataFor(document.getElementById('globalBody'));
+            if (rootViewModel && rootViewModel.selection) {
+                // En CoreRouter, para navegar simplemente cambiamos el observable de selección
+                rootViewModel.selection.path('login'); 
+            } else {
+                console.error("No se pudo encontrar el router global.");
+            };
+        };
       };
     }
     return SalesViewModel;
