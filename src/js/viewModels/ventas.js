@@ -4,7 +4,9 @@ define(['knockout', 'ojs/ojarraydataprovider', 'services/ThemeService', 'ojs/ojr
       var self = this;
 
       // Datos de sesión (Desde appController)
-      self.userLogin = params.parentRouter.parent.viewModel.userLogin;
+      let appController = document.getElementById('globalBody')._viewModel || params.parentRouter; 
+      //self.userLogin = params.parentRouter.parent.viewModel.userLogin;
+      self.userLogin = appController.userLogin || ko.observable("Usuario");
       self.theme = ThemeService;
 
       // Estado del Carrito y UI
@@ -102,7 +104,7 @@ define(['knockout', 'ojs/ojarraydataprovider', 'services/ThemeService', 'ojs/ojr
       self.connected = async () => {
         const api = window.aws_amplify || window.Amplify;
         try { await api.Auth.currentAuthenticatedUser(); }
-        catch (e) { Router.rootInstance.go({ path: 'login' }); }
+        catch (e) { Router.rootInstance.go( 'login' ); }
       };
     }
     return SalesViewModel;

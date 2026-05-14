@@ -118,11 +118,11 @@ define(['knockout', 'ojs/ojcontext', 'ojs/ojmodule-element-utils', 'ojs/ojknocko
         { name: "Your Privacy Rights", id: "yourPrivacyRights", linkTarget: "http://www.oracle.com/us/legal/privacy/index.html" },
       ];*/
       self.footerLinks = [
-        { name: "About Galápagos", linkId: "aboutGalapagos" },
-        { name: "Contact Us", id: "contactUs" },
-        { name: "Legal Notices", id: "legalNotices" },
-        { name: "Terms Of Use", id: "termsOfUse" },
-        { name: "Your Privacy Rights", id: "yourPrivacyRights" },
+        { name: "About Galapagos", linkId: "aboutGalapagos" },
+        { name: "Contacta", id: "contactUs" },
+        { name: "Legales", id: "legalNotices" },
+        { name: "Terminos de uso", id: "termsOfUse" },
+        { name: "Derechos de privacidad", id: "yourPrivacyRights" },
       ];
       
      }
