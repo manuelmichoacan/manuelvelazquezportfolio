@@ -29,7 +29,7 @@ define(['knockout', 'ojs/ojrouter', 'ojs/ojformlayout', 'ojs/ojinputtext', 'ojs/
             console.log("Acceso concedido para:", user.username);
 
             // Redirigir a la página principal tras éxito
-            Router.rootInstance.go({path: 'ventas'});
+            Router.rootInstance.go('ventas');
             } catch (error) {
             console.error("Error de login:", error);
             self.errorMessage("Usuario o contraseña incorrectos");
