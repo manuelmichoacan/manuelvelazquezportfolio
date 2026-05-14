@@ -45,7 +45,8 @@ define(['knockout', 'ojs/ojcontext', 'ojs/ojmodule-element-utils', 'ojs/ojknocko
 
       let navData = [
         { path: '', redirect: 'login' },
-        { path: 'login', detail: { label: 'Inicio de sesión', iconClass: 'oj-ux-ico-lock' } }
+        { path: 'login', detail: { label: 'Inicio de sesión', iconClass: 'oj-ux-ico-lock' } },
+        { path: 'ventas', detail: { label: 'Ventas', iconClass: 'oj-ux-ico-shopping-cart' } }
       ];
       // Router setup
       let router = new CoreRouter(navData, {
@@ -109,14 +110,20 @@ define(['knockout', 'ojs/ojcontext', 'ojs/ojmodule-element-utils', 'ojs/ojknocko
       self.loadBusinessConfig();
 
       // Footer
-      self.footerLinks = [
-        {name: 'About Oracle', linkId: 'aboutOracle', linkTarget:'http://www.oracle.com/us/corporate/index.html#menu-about'},
+      /*self.footerLinks = [
+        { name: "About Galápagos", linkId: "aboutGalapagos", linkTarget:'http://www.oracle.com/us/corporate/index.html#menu-about'},
         { name: "Contact Us", id: "contactUs", linkTarget: "http://www.oracle.com/us/corporate/contact/index.html" },
         { name: "Legal Notices", id: "legalNotices", linkTarget: "http://www.oracle.com/us/legal/index.html" },
         { name: "Terms Of Use", id: "termsOfUse", linkTarget: "http://www.oracle.com/us/legal/terms/index.html" },
         { name: "Your Privacy Rights", id: "yourPrivacyRights", linkTarget: "http://www.oracle.com/us/legal/privacy/index.html" },
+      ];*/
+      self.footerLinks = [
+        { name: "About Galápagos", linkId: "aboutGalapagos" },
+        { name: "Contact Us", id: "contactUs" },
+        { name: "Legal Notices", id: "legalNotices" },
+        { name: "Terms Of Use", id: "termsOfUse" },
+        { name: "Your Privacy Rights", id: "yourPrivacyRights" },
       ];
-      
       
      }
      // release the application bootstrap busy state
