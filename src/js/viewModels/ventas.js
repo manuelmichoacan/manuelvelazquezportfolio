@@ -6,9 +6,7 @@ define(['knockout', 'ojs/ojarraydataprovider', 'services/ThemeService', 'ojs/ojr
       // Datos de sesión (Desde appController)
       //let appController = document.getElementById('globalBody')._viewModel || params.parentRouter; 
       const rootViewModel = ko.dataFor(document.getElementById('globalBody'));
-      console.log(rootViewModel);
-      
-      
+    
       //self.userLogin = params.parentRouter.parent.viewModel.userLogin;
       //self.userLogin = appController.userLogin || ko.observable("Usuario");
       self.userLogin = rootViewModel ? rootViewModel.userLogin : ko.observable("Usuario");
@@ -108,6 +106,8 @@ define(['knockout', 'ojs/ojarraydataprovider', 'services/ThemeService', 'ojs/ojr
       // Seguridad: Redirigir si no hay sesión
       self.connected = async () => {
         const api = window.aws_amplify || window.Amplify;
+        console.log(api);
+        
         try { await api.Auth.currentAuthenticatedUser(); }
         catch (e) { 
           const rootViewModel = ko.dataFor(document.getElementById('globalBody'));
