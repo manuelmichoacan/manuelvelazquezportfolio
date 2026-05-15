@@ -26,7 +26,8 @@ define(['knockout', 'ojs/ojrouter', 'ojs/ojformlayout', 'ojs/ojinputtext', 'ojs/
                 // Llamada a Cognito a través de Amplify
                 const user = await api.Auth.signIn(self.userName(), self.password());
                 const rootViewModel = ko.dataFor(document.getElementById('globalBody'));
-        
+                console.log(rootViewModel);
+                
                 if (rootViewModel && rootViewModel.selection) {
                     //Se actualiza el usuario en el Controller
                     rootViewModel.userLogin(user.username);
