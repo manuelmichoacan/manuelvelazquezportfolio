@@ -7,7 +7,6 @@ define(['knockout', 'ojs/ojarraydataprovider', 'services/ThemeService', 'ojs/ojr
       //let appController = document.getElementById('globalBody')._viewModel || params.parentRouter; 
       const rootViewModel = ko.dataFor(document.getElementById('globalBody'));
       console.log(rootViewModel);
-      console.log(window);
       
       
       //self.userLogin = params.parentRouter.parent.viewModel.userLogin;

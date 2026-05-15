@@ -23,20 +23,18 @@ define(['knockout', 'ojs/ojrouter', 'ojs/ojformlayout', 'ojs/ojinputtext', 'ojs/
             };
 
             try {
-            // Llamada a Cognito a través de Amplify
-            const user = await api.Auth.signIn(self.userName(), self.password());
-            
-            console.log("Acceso concedido para:", user.username);
-
-            // Redirigir a la página principal tras éxito
-            //Router.rootInstance.go('ventas');
-            const rootViewModel = ko.dataFor(document.getElementById('globalBody'));
-            if (rootViewModel && rootViewModel.selection) {
-                // En CoreRouter, para navegar simplemente cambiamos el observable de selección
-                rootViewModel.selection.path('ventas'); 
-            } else {
-                console.error("No se pudo encontrar el router global.");
-            }
+                // Llamada a Cognito a través de Amplify
+                const user = await api.Auth.signIn(self.userName(), self.password());
+                const rootViewModel = ko.dataFor(document.getElementById('globalBody'));
+        
+                if (rootViewModel && rootViewModel.selection) {
+                    //Se actualiza el usuario en el Controller
+                    rootViewModel.userLogin(user.username);
+                    // Se redirige a ventas
+                    rootViewModel.selection.path('ventas'); 
+                } else {
+                    console.error("No se pudo encontrar el router global.");
+                }
             } catch (error) {
             console.error("Error de login:", error);
             self.errorMessage("Usuario o contraseña incorrectos");
