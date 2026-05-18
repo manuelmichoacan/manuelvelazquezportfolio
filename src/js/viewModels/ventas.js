@@ -114,8 +114,10 @@ define(['knockout', 'ojs/ojarraydataprovider', 'services/ThemeService', 'ojs/ojr
         };
 
         try { 
-          const user = await api.Auth.currentAuthenticatedUser(); 
+          const user = await api.Auth.currentAuthenticatedUser();
+          console.log(user);           
           const rootViewModel = ko.dataFor(document.getElementById('globalBody'));
+          console.log(rootViewModel);          
           if (rootViewModel && (!rootViewModel.userLogin() || rootViewModel.userLogin() === "Usuario")) {
             rootViewModel.userLogin(user.username);
           };
