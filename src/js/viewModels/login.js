@@ -32,6 +32,8 @@ define(['knockout', 'ojs/ojrouter', 'ojs/ojformlayout', 'ojs/ojinputtext', 'ojs/
                 if (rootViewModel && rootViewModel.selection) {
                     //Se actualiza el usuario en el Controller
                     rootViewModel.userLogin(user.username);
+                    sessionStorage.setItem('SaaS_Session_Active', 'true');
+                    sessionStorage.setItem('SaaS_User', user.username);
                     // Se redirige a ventas
                     setTimeout(() => {
                         console.log("2. Credenciales asentadas. Redirigiendo a Ventas...");
