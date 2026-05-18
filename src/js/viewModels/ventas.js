@@ -106,7 +106,6 @@ define(['knockout', 'ojs/ojarraydataprovider', 'services/ThemeService', 'ojs/ojr
       // Seguridad: Redirigir si no hay sesión
       self.connected = async function() {
         const api = window.aws_amplify || window.Amplify;
-        console.log(api);
         if(!api || !api.Auth || !api.Auth._config || Object.keys(api.Auth._config).length === 0) {
           console.warn("Amplify no inicializado aún en Ventas. Reintentando en breve...");
           setTimeout(self.connected, 300);
@@ -114,6 +113,7 @@ define(['knockout', 'ojs/ojarraydataprovider', 'services/ThemeService', 'ojs/ojr
         };
 
         try { 
+          console.log("Entra al try");
           const user = await api.Auth.currentAuthenticatedUser();
           console.log(user);           
           const rootViewModel = ko.dataFor(document.getElementById('globalBody'));
