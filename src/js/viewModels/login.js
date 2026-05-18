@@ -27,7 +27,7 @@ define(['knockout', 'ojs/ojrouter', 'ojs/ojformlayout', 'ojs/ojinputtext', 'ojs/
                 const setUser = api.Auth.currentUserCredentials;
                 const user = await api.Auth.signIn(self.userName(), self.password());
                 const rootViewModel = ko.dataFor(document.getElementById('globalBody'));
-                console.log(rootViewModel.userLogin._latestValue());
+                console.log(rootViewModel.userLogin());
                 
                 if (rootViewModel && rootViewModel.selection) {
                     //Se actualiza el usuario en el Controller
