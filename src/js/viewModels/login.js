@@ -29,7 +29,7 @@ define(['knockout', 'ojs/ojrouter', 'ojs/ojformlayout', 'ojs/ojinputtext', 'ojs/
                 const rootViewModel = ko.dataFor(document.getElementById('globalBody'));
                 console.log(rootViewModel);
                 console.log(setUser);
-                console.log(user);
+                console.log(rootViewModel.userLogin._latestValue);
                 
                 if (rootViewModel && rootViewModel.selection) {
                     //Se actualiza el usuario en el Controller
