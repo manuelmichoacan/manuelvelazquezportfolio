@@ -24,14 +24,12 @@ define(['knockout', 'ojs/ojrouter', 'ojs/ojformlayout', 'ojs/ojinputtext', 'ojs/
 
             try {
                 // Llamada a Cognito a través de Amplify
-                const setUser = api.Auth.currentUserCredentials;
                 const user = await api.Auth.signIn(self.userName(), self.password());
                 const rootViewModel = ko.dataFor(document.getElementById('globalBody'));
                 
                 if (rootViewModel && rootViewModel.selection) {
                     //Se actualiza el usuario en el Controller
                     rootViewModel.userLogin(user.username);
-                    console.log(rootViewModel.userLogin());
                     // Se redirige a ventas
                     rootViewModel.selection.path('ventas'); 
                 } else {

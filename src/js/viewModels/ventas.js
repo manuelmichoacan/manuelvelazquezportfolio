@@ -106,11 +106,13 @@ define(['knockout', 'ojs/ojarraydataprovider', 'services/ThemeService', 'ojs/ojr
       // Seguridad: Redirigir si no hay sesión
       self.connected = async () => {
         const api = window.aws_amplify || window.Amplify;
+        const rootViewModel = ko.dataFor(document.getElementById('globalBody'));
         console.log(api);
+        console.log(rootViewModel.userLogin());
         
         try { await api.Auth.currentAuthenticatedUser(); }
         catch (e) { 
-          const rootViewModel = ko.dataFor(document.getElementById('globalBody'));
+          
             if (rootViewModel && rootViewModel.selection) {
                 // En CoreRouter, para navegar simplemente cambiamos el observable de selección
                 rootViewModel.selection.path('login'); 
