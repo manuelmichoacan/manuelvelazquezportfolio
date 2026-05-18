@@ -107,7 +107,8 @@ define(['knockout', 'ojs/ojarraydataprovider', 'services/ThemeService', 'ojs/ojr
       self.connected = async () => {
         const api = window.aws_amplify || window.Amplify;
         const rootViewModel = ko.dataFor(document.getElementById('globalBody'));
-        console.log(api);
+        console.log(api.Auth.currentCredentials());
+        console.log(api.Auth.currentUserCredentials());
         console.log(rootViewModel.userLogin());
         
         try { await api.Auth.currentAuthenticatedUser(); }
