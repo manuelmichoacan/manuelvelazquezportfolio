@@ -104,22 +104,31 @@ define(['knockout', 'ojs/ojarraydataprovider', 'services/ThemeService', 'ojs/ojr
       };
 
       // Seguridad: Redirigir si no hay sesión
-      self.connected = async () => {
+      self.connected = async function() {
         const api = window.aws_amplify || window.Amplify;
-        const rootViewModel = ko.dataFor(document.getElementById('globalBody'));
-        console.log(api.Auth.currentCredentials());
-        console.log(api.Auth.currentUserCredentials());
-        console.log(rootViewModel.userLogin());
         
-        try { await api.Auth.currentAuthenticatedUser(); }
-        catch (e) { 
+        if(!api || !api.Auth || !api.Auth._config || Object.keys(api.Auth._config).length === 0) {
+          console.warn("Amplify no inicializado aún en Ventas. Reintentando en breve...");
+          setTimeout(self.connected, 300);
+          return;
+        };
+
+        try { 
+          const user = await api.Auth.currentAuthenticatedUser(); 
+          const rootViewModel = ko.dataFor(document.getElementById('globalBody'));
+          if (rootViewModel && (!rootViewModel.userLogin() || rootViewModel.userLogin() === "Usuario")) {
+            rootViewModel.userLogin(user.username);
+          };
+        }catch (e) { 
+          const rootViewModel = ko.dataFor(document.getElementById('globalBody'));
           
-            if (rootViewModel && rootViewModel.selection) {
-                // En CoreRouter, para navegar simplemente cambiamos el observable de selección
-                rootViewModel.selection.path('login'); 
-            } else {
-                console.error("No se pudo encontrar el router global.");
-            };
+          if (rootViewModel && rootViewModel.selection) {
+            // En CoreRouter, para navegar simplemente cambiamos el observable de selección
+            rootViewModel.selection.path('login'); 
+          } else {
+            window.location.hash = '?ojr=login';
+            console.error("No se pudo encontrar el router global.");
+          };
         };
       };
     }
