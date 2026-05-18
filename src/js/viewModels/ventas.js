@@ -122,6 +122,7 @@ define(['knockout', 'ojs/ojarraydataprovider', 'services/ThemeService', 'ojs/ojr
             rootViewModel.userLogin(user.username);
           };
         }catch (e) { 
+          console.log("Entra al catch: ",e);
           const rootViewModel = ko.dataFor(document.getElementById('globalBody'));
           
           if (rootViewModel && rootViewModel.selection) {
