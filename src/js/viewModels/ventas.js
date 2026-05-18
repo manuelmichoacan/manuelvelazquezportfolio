@@ -111,28 +111,29 @@ define(['knockout', 'ojs/ojarraydataprovider', 'services/ThemeService', 'ojs/ojr
           setTimeout(self.connected, 300);
           return;
         };
-
-        try { 
-          console.log("Entra al try");
-          const user = await api.Auth.currentAuthenticatedUser();
-          console.log(user);           
-          const rootViewModel = ko.dataFor(document.getElementById('globalBody'));
-          console.log(rootViewModel);          
-          if (rootViewModel && (!rootViewModel.userLogin() || rootViewModel.userLogin() === "Usuario")) {
-            rootViewModel.userLogin(user.username);
+        setTimeout(async () => {
+          try { 
+            console.log("Entra al try");
+            const user = await api.Auth.currentAuthenticatedUser();
+            console.log(user);           
+            const rootViewModel = ko.dataFor(document.getElementById('globalBody'));
+            console.log(rootViewModel);          
+            if (rootViewModel && (!rootViewModel.userLogin() || rootViewModel.userLogin() === "Usuario")) {
+              rootViewModel.userLogin(user.username);
+            };
+          }catch (e) { 
+            console.log("Entra al catch: ",e);
+            const rootViewModel = ko.dataFor(document.getElementById('globalBody'));
+            
+            if (rootViewModel && rootViewModel.selection) {
+              // En CoreRouter, para navegar simplemente cambiamos el observable de selección
+              rootViewModel.selection.path('login'); 
+            } else {
+              window.location.hash = '?ojr=login';
+              console.error("No se pudo encontrar el router global.");
+            };
           };
-        }catch (e) { 
-          console.log("Entra al catch: ",e);
-          const rootViewModel = ko.dataFor(document.getElementById('globalBody'));
-          
-          if (rootViewModel && rootViewModel.selection) {
-            // En CoreRouter, para navegar simplemente cambiamos el observable de selección
-            rootViewModel.selection.path('login'); 
-          } else {
-            window.location.hash = '?ojr=login';
-            console.error("No se pudo encontrar el router global.");
-          };
-        };
+        }, 500);
       };
     }
     return SalesViewModel;
