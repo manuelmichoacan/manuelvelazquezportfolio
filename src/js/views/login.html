@@ -36,55 +36,6 @@
           </div>
         </oj-form-layout>
       </oj-bind-if>
-      
-      <oj-bind-if test="[[errorMessage]]">
-        <p class="oj-text-color-danger oj-sm-margin-2x-top">
-          <oj-bind-text value="[[errorMessage]]"></oj-bind-text>
-        </p>
-      </oj-bind-if>
-    </div>
-  </div>
-</div>
-
-<div class="oj-web-applayout-max-width oj-sm-padding-4x-vertical">
-  <div class="oj-flex oj-sm-justify-content-center">
-    <div class="oj-flex-item oj-sm-12 oj-md-6 oj-lg-4 oj-sm-padding-4x oj-bg-neutral-20">
-      
-      <oj-bind-if test="[[!passwordChallengeRequired()]]">
-        <h2 class="oj-typography-heading-sm oj-sm-margin-4x-bottom">Acceso al Punto de Venta</h2>
-        
-        <oj-form-layout id="loginForm">
-          <oj-input-text id="username" label-hint="Usuario" value="{{userName}}" required></oj-input-text>
-          <oj-input-password id="password" label-hint="Contraseña" value="{{password}}" required></oj-input-password>
-          
-          <div class="oj-sm-margin-4x-top">
-            <oj-button id="loginButton" chroming="solid" on-oj-action="[[handleLogin]]" 
-                       disabled="[[loading]]">
-              <span>Iniciar Sesión</span>
-            </oj-button>
-          </div>
-        </oj-form-layout>
-      </oj-bind-if>
-
-      <oj-bind-if test="[[passwordChallengeRequired]]">
-        <h2 class="oj-typography-heading-sm oj-sm-margin-4x-bottom" style="color: var(--app-primary-color);">Contraseña Expirada</h2>
-        <p class="oj-typography-body-sm oj-sm-margin-3x-bottom">Es tu primer ingreso o se ha solicitado un cambio. Por seguridad, ingresa una nueva contraseña definitiva.</p>
-        
-        <oj-form-layout id="challengeForm">
-          <oj-input-password id="newPassword" label-hint="Nueva Contraseña" value="{{newPassword}}" required></oj-input-password>
-          <oj-input-password id="confirmNewPassword" label-hint="Confirmar Contraseña" value="{{confirmNewPassword}}" required></oj-input-password>
-          
-          <div class="oj-sm-margin-4x-top oj-flex oj-sm-justify-content-space-between">
-            <oj-button id="cancelChallengeButton" chroming="borderless" on-oj-action="[[cancelChallenge]]">
-              <span>Cancelar</span>
-            </oj-button>
-            <oj-button id="challengeButton" chroming="solid" on-oj-action="[[handlePasswordChallenge]]" 
-                       disabled="[[loading]]">
-              <span>Actualizar y Entrar</span>
-            </oj-button>
-          </div>
-        </oj-form-layout>
-      </oj-bind-if>
 
       <oj-bind-if test="[[errorMessage]]">
         <p class="oj-text-color-danger oj-sm-margin-2x-top">
