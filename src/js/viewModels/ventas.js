@@ -106,43 +106,33 @@ define(['knockout', 'ojs/ojarraydataprovider', 'services/ThemeService', 'ojs/ojr
       // Seguridad: Redirigir si no hay sesión
       self.connected = async function() {
         const api = window.aws_amplify || window.Amplify;
-        const localSession = sessionStorage.getItem('SaaS_Session_Active');
-        const localUser = sessionStorage.getItem('SaaS_User');
+        //const localSession = sessionStorage.getItem('SaaS_Session_Active');
+        //const localUser = sessionStorage.getItem('SaaS_User');
         /*if(!api || !api.Auth || !api.Auth._config || Object.keys(api.Auth._config).length === 0) {
           console.warn("Amplify no inicializado aún en Ventas. Reintentando en breve...");
           setTimeout(self.connected, 300);
           return;
         };*/
-        if (localSession === 'true' && localUser) {
+        /*if (localSession === 'true' && localUser) {
           console.log("--> [ÉXITO] Acceso autorizado localmente para:", localUser);
           const rootViewModel = ko.dataFor(document.getElementById('globalBody'));
           if (rootViewModel && (!rootViewModel.userLogin() || rootViewModel.userLogin() === "Usuario")) {
             rootViewModel.userLogin(localUser);
           }
           return; // Saltamos la validación de red temporalmente para evitar el error
-        };
+        };*/
 
         setTimeout(async () => {
           try { 
-            console.log("Entra al try");
             const user = await api.Auth.currentAuthenticatedUser();
-            console.log(user);           
-            const rootViewModel = ko.dataFor(document.getElementById('globalBody'));
-            console.log(rootViewModel);          
+            console.log("Sesión verificada en Ventas para:", user.username);         
+            const rootViewModel = ko.dataFor(document.getElementById('globalBody'));         
             if (rootViewModel && (!rootViewModel.userLogin() || rootViewModel.userLogin() === "Usuario")) {
               rootViewModel.userLogin(user.username);
             };
           }catch (e) { 
-            console.log("Entra al catch: ",e);
-            const rootViewModel = ko.dataFor(document.getElementById('globalBody'));
-            
-            if (rootViewModel && rootViewModel.selection) {
-              // En CoreRouter, para navegar simplemente cambiamos el observable de selección
-              rootViewModel.selection.path('login'); 
-            } else {
-              window.location.hash = '?ojr=login';
-              console.error("No se pudo encontrar el router global.");
-            };
+            console.warn("Acceso denegado, redirigiendo al login.");
+            Router.rootInstance.go('login');
           };
         }, 500);
       };
