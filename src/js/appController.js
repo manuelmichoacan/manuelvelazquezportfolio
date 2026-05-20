@@ -46,20 +46,30 @@ define(['knockout', 'ojs/ojcontext', 'ojs/ojmodule-element-utils', 'ojs/ojknocko
       let navData = [
         { path: '', redirect: 'login' },
         { path: 'login', detail: { label: 'Inicio de sesión', iconClass: 'oj-ux-ico-lock' } },
-        { path: 'ventas', detail: { label: 'Ventas', iconClass: 'oj-ux-ico-shopping-cart' } }
+        { path: 'ventas', detail: { label: 'Ventas', iconClass: 'oj-ux-ico-shopping-cart' } },
+        { path: 'productos', detail: { label: 'Inventario', iconClass: 'oj-ux-ico-box' } }
       ];
       // Router setup
       let router = new CoreRouter(navData, {
         urlAdapter: new UrlParamAdapter()
       });
       router.sync();
+      self.menuRoutes = ko.observableArray([]);
 
       self.moduleAdapter = new ModuleRouterAdapter(router);
       self.selection = new KnockoutRouterAdapter(router);
 
+      self.selection.path.subscribe(function(currentPath){
+        if (currentPath === 'login') {
+          self.menuRoutes([]);
+        } else {
+          let filtrado = navData.filter(route => route.path !== 'login' && route.path !== ''); 
+          self.menuRoutes(filtrado);          
+        }
+      }
       // Setup the navDataProvider with the routes, excluding the first redirected
       // route.
-      self.navDataProvider = new ArrayDataProvider(navData.slice(1), {keyAttributes: "path"});
+      self.navDataProvider = new ArrayDataProvider(self.menuRoutes, {keyAttributes: "path"});
 
       // Drawer
       self.sideDrawerOn = ko.observable(false);

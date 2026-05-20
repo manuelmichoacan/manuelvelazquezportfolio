@@ -1,0 +1,66 @@
+<div class="oj-hybrid-padding">
+  <h2 class="oj-typography-heading-md">Control de Inventario (CRUD)</h2>
+  
+  <div class="oj-panel oj-bg-neutral-20 oj-sm-margin-4x-bottom oj-flex oj-sm-align-items-center">
+    <div class="oj-flex-item oj-flex oj-sm-align-items-center">
+      <oj-button id="btnNew" chroming="solid" class="oj-sm-margin-2x-end" on-oj-action="[[openCreateModal]]">
+        <span slot="startIcon" class="oj-ux-ico-plus"></span>
+        Nuevo Producto
+      </oj-button>
+      
+      <input type="file" id="filePicker" accept=".csv" style="display:none;" on-change="[[handleCSVUpload]]"/>
+      <oj-button id="btnUpload" chroming="outlined" on-oj-action="[[triggerFilePicker]]" disabled="[[uploading]]">
+        <span slot="startIcon" class="oj-ux-ico-upload"></span>
+        <oj-bind-text value="[[uploading() ? 'Procesando...' : 'Carga Rápida (.CSV)']]"></oj-bind-text>
+      </oj-button>
+    </div>
+    <div class="oj-typography-body-xs oj-text-color-secondary">
+      Campos CSV obligatorios: id, nombre, precio, codigo_barras
+    </div>
+  </div>
+
+  <oj-table id="productsTable" 
+            aria-label="Tabla de Productos"
+            data="[[productsDataProvider]]"
+            columns='[
+              {"headerText": "ID", "field": "id", "width": "10%"},
+              {"headerText": "Nombre de Producto", "field": "nombre", "width": "40%"},
+              {"headerText": "Precio", "field": "precio", "template": "currencyTemplate", "width": "15%"},
+              {"headerText": "Código de Barras", "field": "codigo_barras", "width": "20%"},
+              {"headerText": "Acciones", "template": "actionsTemplate", "width": "15%", "style":"text-align:center;"}
+            ]'
+            style="width: 100%; height: 480px;">
+    
+    <template slot="currencyTemplate" data-oj-as="cell">
+      $ <oj-bind-text value="[[Number(cell.data).toFixed(2)]]"></oj-bind-text>
+    </template>
+
+    <template slot="actionsTemplate" data-oj-as="cell">
+      <div class="oj-flex oj-sm-justify-content-center">
+        <oj-button display="icons" chroming="borderless" title="Editar" on-oj-action="[[() => openEditModal(cell.row)]]">
+          <span slot="startIcon" class="oj-ux-ico-edit" style="color: var(--app-primary-color);"></span>
+          Editar
+        </oj-button>
+        <oj-button display="icons" chroming="borderless" title="Eliminar" on-oj-action="[[() => deleteProduct(cell.row.id)]]">
+          <span slot="startIcon" class="oj-ux-ico-trash" style="color: var(--app-text-color-danger);"></span>
+          Eliminar
+        </oj-button>
+      </div>
+    </template>
+  </oj-table>
+
+  <oj-dialog id="productDialog" dialog-title="[[modalTitle]]" style="width: 400px; min-width: 300px;">
+    <div slot="body">
+      <oj-form-layout label-edge="inside">
+        <oj-input-text label-hint="ID de Producto" value="{{formProduct.id}}" disabled="[[isEditMode]]" required></oj-input-text>
+        <oj-input-text label-hint="Nombre / Descripción" value="{{formProduct.nombre}}" required></oj-input-text>
+        <oj-input-text label-hint="Precio de Venta" value="{{formProduct.precio}}" required></oj-input-text>
+        <oj-input-text label-hint="Código de Barras" value="{{formProduct.codigo_barras}}" required></oj-input-text>
+      </oj-form-layout>
+    </div>
+    <div slot="footer">
+      <oj-button id="btnCancel" chroming="borderless" on-oj-action="[[closeModal]]">Cancelar</oj-button>
+      <oj-button id="btnSave" chroming="solid" on-oj-action="[[saveProduct]]">Guardar Cambios</oj-button>
+    </div>
+  </oj-dialog>
+</div>
