@@ -65,8 +65,8 @@ define(['knockout', 'ojs/ojcontext', 'ojs/ojmodule-element-utils', 'ojs/ojknocko
         } else {
           let filtrado = navData.filter(route => route.path !== 'login' && route.path !== ''); 
           self.menuRoutes(filtrado);          
-        }
-      }
+        };
+      });
       // Setup the navDataProvider with the routes, excluding the first redirected
       // route.
       self.navDataProvider = new ArrayDataProvider(self.menuRoutes, {keyAttributes: "path"});
