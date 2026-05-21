@@ -88,9 +88,20 @@ define(['knockout', 'ojs/ojrouter', 'ojs/ojformlayout', 'ojs/ojinputtext', 'ojs/
 
             try {
                 console.log("Enviando nueva contraseña a AWS Cognito...");
-                const userAttributes = {
-                    'address': 'Principal Morelia'
+                const userAttributes = {};
+                if (cognitoUserObj && cognitoUserObj.challengeParam && cognitoUserObj.challengeParam.requiredAttributes) {
+                    const camposRequeridos = cognitoUserObj.challengeParam.requiredAttributes;
+                    
+                    // Recorremos cada campo (ej. ['address', 'given_name']) y le asignamos un valor base
+                    camposRequeridos.forEach(campo => {
+                        // Removemos el prefijo 'userAttributes.' si es que Cognito lo incluye
+                        const nombreCampo = campo.replace('userAttributes.', '');
+                        
+                        // Le ponemos un valor por defecto para cumplir con AWS sin pedirle nada al usuario
+                        userAttributes[nombreCampo] = "Dato_SaaS"; 
+                    });
                 };
+                console.log("Atributos obligatorios inyectados automáticamente:", userAttributes);
                 // Completar el reto usando el objeto guardado
                 const loggedUser = await api.Auth.completeNewPassword(
                     cognitoUserObj,
