@@ -88,11 +88,14 @@ define(['knockout', 'ojs/ojrouter', 'ojs/ojformlayout', 'ojs/ojinputtext', 'ojs/
 
             try {
                 console.log("Enviando nueva contraseña a AWS Cognito...");
+                const userAttributes = {
+                    'address': 'Principal Morelia'
+                };
                 // Completar el reto usando el objeto guardado
                 const loggedUser = await api.Auth.completeNewPassword(
                     cognitoUserObj,
                     self.newPassword(),
-                    cognitoUserObj.challengeParam.requiredAttributes
+                    userAttributes//cognitoUserObj.challengeParam.requiredAttributes
                 );
 
                 console.log("Contraseña actualizada con éxito.");
