@@ -130,13 +130,23 @@ define(['knockout', 'ojs/ojrouter', 'ojs/ojformlayout', 'ojs/ojinputtext', 'ojs/
                 // Desencadenar la carga de configuración del negocio si aplica
                 if (typeof rootViewModel.loadBusinessConfig === "function") {
                     rootViewModel.loadBusinessConfig();
-                }
-            }
+                };
 
-            // Pequeña pausa para asegurar la escritura del LocalStorage por parte de Amplify
-            setTimeout(() => {
-                Router.rootInstance.go('ventas');
-            }, 100);
+                setTimeout(() => {
+                    //Router.rootInstance.go('ventas');
+                    if (rootViewModel.selection && rootViewModel.selection.path) {
+                        rootViewModel.selection.path('ventas');
+                    } else {
+                        // Contingencia por si el árbol del DOM está ocupado en el renderizado
+                        window.location.hash = '?ojr=ventas';
+                    };
+                }, 100);
+            } else {
+                // Si por alguna razón no se localiza el globalBody, usamos el hash nativo
+                setTimeout(() => {
+                    window.location.hash = '?ojr=ventas';
+                }, 100);
+            };
         };
         self.cancelChallenge = function() {
             cognitoUserObj = null;
