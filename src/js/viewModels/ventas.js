@@ -41,7 +41,7 @@ define(['knockout', 'ojs/ojarraydataprovider', 'services/ThemeService', 'ojs/ojr
           const session = await api.Auth.currentSession();
           const token = session.getIdToken().getJwtToken();
 
-          const response = await fetch(`TU_API_GATEWAY_URL/products?search=${query}`, {
+          const response = await fetch(`https://m5zj9o01s5.execute-api.us-east-1.amazonaws.com/produccion/productos?search=${query}`, {
             headers: { 'Authorization': token }
           });
           const product = await response.json(); // Asumiendo que devuelve el primer match

@@ -3,7 +3,7 @@ define(['knockout', 'ojs/ojarraydataprovider', 'services/ThemeService', 'ojs/ojk
     function ProductosViewModel() {
       var self = this;
       
-      const API_URL = 'TU_URL_DE_API_GATEWAY/productos'; // Asegúrate de quitar la barra final
+      const API_URL = 'https://m5zj9o01s5.execute-api.us-east-1.amazonaws.com/produccion/productos';
 
       // Estados de Tabla e Inventario
       self.productsList = ko.observableArray([]);
