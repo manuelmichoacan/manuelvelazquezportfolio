@@ -54,8 +54,8 @@ define(['knockout', 'ojs/ojarraydataprovider', 'services/ThemeService', 'ojs/ojk
         }
 
         const payload = {
-          id: String(self.formProduct.id().trim()),
-          nombre: self.formProduct.nombre().trim(),
+          id_producto: String(self.formProduct.id().trim()),
+          descripcion_producto: self.formProduct.nombre().trim(),
           precio: parseFloat(String(self.formProduct.precio()).replace('$', '')),
           codigo_barras: String(self.formProduct.codigo_barras() || '').trim()
         };
