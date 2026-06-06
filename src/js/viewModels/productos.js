@@ -87,12 +87,12 @@ define(['knockout', 'ojs/ojarraydataprovider', 'services/ThemeService', 'ojs/ojk
       };
 
       // --- OPERACIÓN: ELIMINAR (DELETE) ---
-      self.deleteProduct = async function(id, descripcion) {
+      self.deleteProduct = async function(id) {
         if (!confirm(`¿Estás seguro de que deseas eliminar el producto con ID: ${id}?`)) return;
 
         try {
           const token = await getAuthToken();
-          const response = await fetch(`${API_URL}?id=${id}&descripcion=${encodeURIComponent(descripcion)}`, {
+          const response = await fetch(`${API_URL}?id=${id}`, {
             method: 'DELETE',
             headers: { 'Authorization': token }
           });
