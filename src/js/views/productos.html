@@ -41,7 +41,7 @@
           <span slot="startIcon" class="oj-ux-ico-edit" style="color: var(--app-primary-color);"></span>
           Editar
         </oj-button>
-        <oj-button display="icons" chroming="borderless" title="Eliminar" on-oj-action="[[() => deleteProduct(cell.row.id_producto)]]">
+        <oj-button display="icons" chroming="borderless" title="Eliminar" on-oj-action="[[() => deleteProduct(cell.row.id_producto, cell.row.descripcion_producto)]]">
           <span slot="startIcon" class="oj-ux-ico-trash" style="color: var(--app-text-color-danger);"></span>
           Eliminar
         </oj-button>
