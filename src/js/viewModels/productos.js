@@ -170,8 +170,8 @@ define(['knockout', 'ojs/ojarraydataprovider', 'services/ThemeService', 'ojs/ojk
         self.modalTitle('Modificar Producto');
         self.isEditMode(true);
         // Cargar datos seleccionados en los inputs de JET
-        self.formProduct.id(row.id);
-        self.formProduct.nombre(row.nombre);
+        self.formProduct.id(row.id_producto);
+        self.formProduct.nombre(row.descripcion_producto);
         self.formProduct.precio(row.precio);
         self.formProduct.codigo_barras(row.codigo_barras || '');
         document.getElementById('productDialog').open();
