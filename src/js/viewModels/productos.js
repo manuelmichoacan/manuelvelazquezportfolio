@@ -48,7 +48,7 @@ define(['knockout', 'ojs/ojarraydataprovider', 'services/ThemeService', 'ojs/ojk
       // --- OPERACIÓN: CREAR / ACTUALIZAR (CREATE / UPDATE) ---
       self.saveProduct = async function() {
         // Validaciones básicas de campos vacíos
-        if(!self.formProduct.id() || !self.formProduct.nombre() || !self.formProduct.precio()) {
+        if( !self.formProduct.nombre() || !self.formProduct.precio()) {
           alert("Por favor completa los campos requeridos.");
           return;
         }
