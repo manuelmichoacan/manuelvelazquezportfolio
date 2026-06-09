@@ -156,7 +156,8 @@ define(['knockout', 'ojs/ojarraydataprovider', 'services/ThemeService', 'ojs/ojk
 
       // --- CONTROLIZACIÓN DE MODALES ---
       self.openCreateModal = function() {
-        document.getElementById('itIdProducto').hidden = true;
+        let id_producto_mod = document.getElementById('itIdProducto');
+        id_producto_mod.hidden = true;
         self.modalTitle('Nuevo Producto');
         self.isEditMode(false);
         // Inicializar vacío
@@ -168,7 +169,8 @@ define(['knockout', 'ojs/ojarraydataprovider', 'services/ThemeService', 'ojs/ojk
       };
 
       self.openEditModal = function(row) {
-        document.getElementById('itIdProducto').hidden = false;
+        let id_producto_mod = document.getElementById('itIdProducto');
+        id_producto_mod.hidden = false;
         self.modalTitle('Modificar Producto');
         self.isEditMode(true);
         // Cargar datos seleccionados en los inputs de JET
