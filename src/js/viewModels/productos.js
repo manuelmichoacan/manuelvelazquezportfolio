@@ -169,8 +169,8 @@ define(['knockout', 'ojs/ojarraydataprovider', 'services/ThemeService', 'ojs/ojk
       };
 
       self.openEditModal = function(row) {
-        let id_producto_mod = document.getElementById('itIdProducto');
-        id_producto_mod.hidden = false;
+        /*let id_producto_mod = document.getElementById('itIdProducto');
+        id_producto_mod.hidden = false;*/
         self.modalTitle('Modificar Producto');
         self.isEditMode(true);
         // Cargar datos seleccionados en los inputs de JET
