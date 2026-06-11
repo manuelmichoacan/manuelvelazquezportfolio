@@ -52,10 +52,10 @@
   <oj-dialog id="productDialog" dialog-title="[[modalTitle]]" style="width: 400px; min-width: 300px;">
     <div slot="body">
       <oj-form-layout label-edge="inside">
-        <oj-input-text id="itIdProducto" value="{{formProduct.id}}" disabled="[[isEditMode]]" required></oj-input-text>
-        <oj-input-text label-hint="Nombre / Descripción" value="{{formProduct.nombre}}" required></oj-input-text>
-        <oj-input-text label-hint="Precio de Venta" value="{{formProduct.precio}}" required></oj-input-text>
-        <oj-input-text label-hint="Código de Barras" value="{{formProduct.codigo_barras}}" required></oj-input-text>
+        <oj-c-input-text id="itIdProducto" label-hint="Id del producto" value="{{formProduct.id}}" disabled="[[isEditMode]]" required></oj-c-input-text>
+        <oj-c-input-text label-hint="Nombre / Descripción" value="{{formProduct.nombre}}" required></oj-c-input-text>
+        <oj-c-input-text label-hint="Precio de Venta" value="{{formProduct.precio}}" required></oj-c-input-text>
+        <oj-c-input-text label-hint="Código de Barras" value="{{formProduct.codigo_barras}}" required></oj-c-input-text>
       </oj-form-layout>
     </div>
     <div slot="footer">
