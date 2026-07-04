@@ -1,4 +1,4 @@
-define(
+define([],
  function() {
     function portadaViewModel() {
       // Below are a set of the ViewModel methods invoked by the oj-module component.
@@ -13,8 +13,6 @@ define(
        * after being disconnected.
        */
       this.connected = () => {
-        accUtils.announce('portada page loaded.', 'assertive');
-        document.title = "portada";
         // Implement further logic if needed
       };
 
