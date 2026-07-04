@@ -55,8 +55,10 @@ define(['knockout', 'ojs/ojcontext', 'ojs/ojmodule-element-utils', 'ojs/ojknocko
       self.menuRoutes = ko.observableArray([]);
 
       self.moduleAdapter = new ModuleRouterAdapter(router);
+      consolelog("Module Adapter: ", self.moduleAdapter);
       self.selection = new KnockoutRouterAdapter(router);
-
+      consolelog("Module Adapter: ", self.moduleAdapter);
+      consolelog("Selection: ", self.selection);
       self.selection.path.subscribe(function(currentPath){
         console.log(currentPath);
         if (currentPath === 'portada') {
