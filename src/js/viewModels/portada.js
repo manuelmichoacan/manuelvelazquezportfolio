@@ -29,6 +29,8 @@ define([],
        */
       this.transitionCompleted = () => {
         // Implement if needed
+        console.log("Entra a la página");
+        
       };
     }
 
