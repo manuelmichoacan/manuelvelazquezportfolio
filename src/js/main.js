@@ -61,7 +61,7 @@
 /**
  * Load the application's entry point file
  */
-require(['aws-amplify', './root'], function (AmplifyMod) {
+/*require(['aws-amplify', './root'], function (AmplifyMod) {
     // Nota: Dependiendo de la versión, puede ser AmplifyMod.Amplify o solo AmplifyMod
     const Amplify = AmplifyMod || window.Amplify || window.aws_amplify;
 
@@ -84,4 +84,4 @@ require(['aws-amplify', './root'], function (AmplifyMod) {
        } catch (e) {
         console.error("Error al configurar Amplify:", e);
        }
- });
+ });*/
