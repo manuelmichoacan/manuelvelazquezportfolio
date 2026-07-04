@@ -58,12 +58,14 @@ define(['knockout', 'ojs/ojcontext', 'ojs/ojmodule-element-utils', 'ojs/ojknocko
       self.selection = new KnockoutRouterAdapter(router);
 
       self.selection.path.subscribe(function(currentPath){
+        console.log(currentPath);
         if (currentPath === 'portada') {
           self.menuRoutes([]);
         } else {
           let filtrado = navData.filter(route => route.path !== 'portada' && route.path !== ''); 
           self.menuRoutes(filtrado);          
         };
+        console.log(self.menuRoutes());
       });
       // Setup the navDataProvider with the routes, excluding the first redirected
       // route.
