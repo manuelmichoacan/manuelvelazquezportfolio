@@ -6,6 +6,19 @@
         This is where any of your application specific styles should be included
 */
 
+h1 {
+  font-size: 2.5em;
+  color: #003366;
+}
+h3 {
+  color: #006699;
+}
+.oj-card {
+  margin: 15px;
+  padding: 20px;
+  border: 1px solid #ddd;
+}
+
 .send-off-screen {
   position: absolute;
   left: -10000px;

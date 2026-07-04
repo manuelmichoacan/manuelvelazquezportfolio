@@ -44,10 +44,8 @@ define(['knockout', 'ojs/ojcontext', 'ojs/ojmodule-element-utils', 'ojs/ojknocko
       ];*/
 
       let navData = [
-        { path: '', redirect: 'login' },
-        { path: 'login', detail: { label: 'Inicio de sesión', iconClass: 'oj-ux-ico-lock' } },
-        { path: 'ventas', detail: { label: 'Ventas', iconClass: 'oj-ux-ico-shopping-cart' } },
-        { path: 'productos', detail: { label: 'Inventario', iconClass: 'oj-ux-ico-box' } }
+        { path: '', redirect: 'portada' },
+        { path: 'portada', detail: { label: 'Acerca de mí | Manuel Velázquez Guzmán', iconClass: 'oj-ux-ico-information-s' } }
       ];
       // Router setup
       let router = new CoreRouter(navData, {
@@ -60,10 +58,10 @@ define(['knockout', 'ojs/ojcontext', 'ojs/ojmodule-element-utils', 'ojs/ojknocko
       self.selection = new KnockoutRouterAdapter(router);
 
       self.selection.path.subscribe(function(currentPath){
-        if (currentPath === 'login') {
+        if (currentPath === 'portada') {
           self.menuRoutes([]);
         } else {
-          let filtrado = navData.filter(route => route.path !== 'login' && route.path !== ''); 
+          let filtrado = navData.filter(route => route.path !== 'portada' && route.path !== ''); 
           self.menuRoutes(filtrado);          
         };
       });
@@ -88,7 +86,7 @@ define(['knockout', 'ojs/ojcontext', 'ojs/ojmodule-element-utils', 'ojs/ojknocko
       // User Info used in Global Navigation area
       self.userLogin = ko.observable("");
 
-      self.loadBusinessConfig = async function() {
+      /*self.loadBusinessConfig = async function() {
         // Detectamos Amplify
         
         const api = window.aws_amplify || window.Amplify;
@@ -117,7 +115,7 @@ define(['knockout', 'ojs/ojcontext', 'ojs/ojmodule-element-utils', 'ojs/ojknocko
       };
 
       // Ejecutar la carga al inicializar
-      self.loadBusinessConfig();
+      self.loadBusinessConfig();*/
 
       // Footer
       /*self.footerLinks = [
