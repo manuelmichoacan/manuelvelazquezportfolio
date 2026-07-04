@@ -1,44 +1,28 @@
-define([],
- function() {
-    function portadaViewModel() {
-      // Below are a set of the ViewModel methods invoked by the oj-module component.
-      // Please reference the oj-module jsDoc for additional information.
+define(['knockout'], function(ko) {
+  function PortadaViewModel() {
+    var self = this;
 
-      /**
-       * Optional ViewModel method invoked after the View is inserted into the
-       * document DOM.  The application can put logic that requires the DOM being
-       * attached here.
-       * This method might be called multiple times - after the View is created
-       * and inserted into the DOM and after the View is reconnected
-       * after being disconnected.
-       */
-      this.connected = () => {
-        // Implement further logic if needed
-      };
+    // Datos de habilidades para el gráfico
+    self.skillsData = [
+      { name: "PL/SQL", items: [{ value: 90 }] },
+      { name: "SQL", items: [{ value: 85 }] },
+      { name: "ETL", items: [{ value: 80 }] },
+      { name: "JavaScript", items: [{ value: 75 }] },
+      { name: "AWS Architect", items: [{ value: 70 }] },
+      { name: "Oracle JET/APEX", items: [{ value: 65 }] },
+      { name: "Python", items: [{ value: 80 }] },
+      { name: "Azure Databricks", items: [{ value: 60 }] }
+    ];
 
-      /**
-       * Optional ViewModel method invoked after the View is disconnected from the DOM.
-       */
-      this.disconnected = () => {
-        // Implement if needed
-      };
+    // Acciones de botones
+    self.goLinkedIn = function() {
+      window.open("https://www.linkedin.com/in/manuel-velazquez-guzman", "_blank");
+    };
 
-      /**
-       * Optional ViewModel method invoked after transition to the new View is complete.
-       * That includes any possible animation between the old and the new View.
-       */
-      this.transitionCompleted = () => {
-        // Implement if needed
-        console.log("Entra a la página");
-        
-      };
-    }
-
-    /*
-     * Returns an instance of the ViewModel providing one instance of the ViewModel. If needed,
-     * return a constructor for the ViewModel so that the ViewModel is constructed
-     * each time the view is displayed.
-     */
-    return portadaViewModel;
+    self.goContacto = function() {
+      window.location.href = "mailto:manuel@example.com";
+    };
   }
-);
+
+  return PortadaViewModel;
+});

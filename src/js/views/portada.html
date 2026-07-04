@@ -1,7 +1,27 @@
-<div class="oj-flex">
-  <div class="oj-sm-12 oj-md-6">
-    <h1>Manuel Velázquez</h1>
-    <h3>Senior IT Specialist | +15 años de experiencia</h3>
-    <p>Especialista en soluciones Data & Cloud, modernización Oracle, automatización con IA y visualización de datos.</p>
+<div class="oj-flex oj-sm-padding-4x">
+  <div class="oj-sm-12 oj-md-6 oj-flex-item">
+    <h1 class="oj-text-primary-color">Manuel Velázquez</h1>
+    <h3 class="oj-text-secondary-color">
+      Senior IT Specialist | +15 años de experiencia
+    </h3>
+    <p>
+      Especialista en soluciones Data & Cloud, modernización Oracle,
+      automatización con IA y visualización de datos.
+    </p>
+    <oj-button id="btnLinkedIn" on-oj-action="[[goLinkedIn]]">
+      Ver LinkedIn
+    </oj-button>
+    <oj-button id="btnContacto" on-oj-action="[[goContacto]]">
+      Contacto
+    </oj-button>
+  </div>
+
+  <div class="oj-sm-12 oj-md-6 oj-flex-item">
+    <!-- Gráfico de habilidades -->
+    <oj-chart type="bar" orientation="horizontal"
+              series="[[skillsData]]"
+              animation-on-display="auto"
+              animation-on-data-change="auto">
+    </oj-chart>
   </div>
 </div>
