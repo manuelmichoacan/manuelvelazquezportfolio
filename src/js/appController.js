@@ -51,28 +51,23 @@ define(['knockout', 'ojs/ojcontext', 'ojs/ojmodule-element-utils', 'ojs/ojknocko
       let router = new CoreRouter(navData, {
         urlAdapter: new UrlParamAdapter()
       });
-      router.sync();
-      self.menuRoutes = ko.observableArray([]);
 
+      self.menuRoutes = ko.observableArray([]);
       self.moduleAdapter = new ModuleRouterAdapter(router);
-      console.log("Module Adapter: ", self.moduleAdapter);
       self.selection = new KnockoutRouterAdapter(router);
-      console.log("Module Adapter: ", self.moduleAdapter);
-      console.log("Selection: ", self.selection);
+      
       self.selection.path.subscribe(function(currentPath){
-        console.log(currentPath);
         if (currentPath === 'portada') {
           self.menuRoutes([]);
         } else {
           let filtrado = navData.filter(route => route.path !== 'portada' && route.path !== ''); 
           self.menuRoutes(filtrado);          
         };
-        console.log(self.menuRoutes());
       });
       // Setup the navDataProvider with the routes, excluding the first redirected
       // route.
       self.navDataProvider = new ArrayDataProvider(self.menuRoutes, {keyAttributes: "path"});
-
+      router.sync();
       // Drawer
       self.sideDrawerOn = ko.observable(false);
 
